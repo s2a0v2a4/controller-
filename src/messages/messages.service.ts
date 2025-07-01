@@ -12,32 +12,42 @@ export class MessagesService {
 
   findOne(id: string): Message {
     const message = this.messages.find(msg => msg.id === id);
-    if (!message) {
-      throw new NotFoundException(`Nachricht mit ID ${id} nicht gefunden`);
-    }
+    if (!message) throw new NotFoundException(`Postkarte mit ID ${id} nicht gefunden!`);
     return message;
   }
 
   create(createMessageDto: CreateMessageDto): Message {
-    const message: Message = {
-      id: (Math.random() * 10000).toFixed(0),
+    const newMessage: Message = {
+      id: (Math.random() * 1000000).toFixed(0),
       text: createMessageDto.text,
+      author: createMessageDto.author,
+      createdAt: new Date(),
     };
-    this.messages.push(message);
-    return message;
+    this.messages.push(newMessage);
+    return newMessage;
   }
 
   update(id: string, updateMessageDto: CreateMessageDto): Message {
     const message = this.findOne(id);
     message.text = updateMessageDto.text;
+    message.author = updateMessageDto.author;
     return message;
   }
 
   remove(id: string): void {
     const index = this.messages.findIndex(msg => msg.id === id);
-    if (index === -1) {
-      throw new NotFoundException(`Nachricht mit ID ${id} nicht gefunden`);
-    }
+    if (index === -1) throw new NotFoundException(`Postkarte mit ID ${id} nicht gefunden!`);
     this.messages.splice(index, 1);
   }
 }
+
+
+// Erklärung:
+
+//     create() erstellt neue Nachrichten mit ID & Datum
+
+//     findOne() findet Nachricht oder wirft Fehler
+
+//     update() ändert text und author
+
+//     remove() löscht die Nachricht oder wirft Fehler
