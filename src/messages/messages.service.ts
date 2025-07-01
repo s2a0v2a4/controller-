@@ -122,6 +122,7 @@ export class MessagesService {
       id: uuidv4(),
       title: createMessageDto.title,
       description: createMessageDto.description,
+        author: createMessageDto.author, // ✅
       createdAt: new Date(),
     };
     this.messages.push(newMessage);
