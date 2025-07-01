@@ -27,21 +27,60 @@ So sieht der Flow aus:
 
 <!-- 
 
+Nachrichten hinzufügen
+$ curl -X POST http://localhost:3000/messages \
+> -H "Content-Type: application/json" \
+> -d '{"title": "Grillabend", "description": "Am Flussufer", "author": "Sophie"}'
+{"id":"b067efa7-9508-4805-b66c-6305e61bf52c","title":"Grillabend","description":"Am Flussufer","author":"Sophie","createdAt":"2025-07-01T19:35:27.618Z"}
+
+1bsp
 curl -X POST http://localhost:3000/messages \
--H "Content-Type: application/json" \
--d '{"text": "Hallo aus dem Chat!", "author": "sava"}'
+  -H "Content-Type: application/json" \
+  -d '{"title": "Grillabend", "description": "Am Flussufer", "author": "Sophie"}'
+
+2bsp
+curl -X POST http://localhost:3000/messages \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Kinoabend", "description": "Neue Filme", "author": "Max"}'
+
+3bsp
+curl -X POST http://localhost:3000/messages \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Wanderung", "description": "Bergtour am Sonntag", "author": "Anna"}'
+
+
+Nachrichten anzeigen (mit IDs)
+curl http://localhost:3000/messages
+
+
+Nachricht aktualisieren (PUT)
+curl -X PUT http://localhost:3000/messages/<ID> \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Geänderter Titel", "description": "Neue Beschreibung", "author": "Neuer Autor"}'
+
+curl -X PUT http://localhost:3000/messages/b067efa7-9508-4805-b66c-6305e61bf52c \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Sommergrillparty", "description": "Am Seeufer", "author": "Sophie"}'
+
+
+
+Nachricht löschen (DELETE)
+curl -X DELETE http://localhost:3000/messages/<ID>
+
+curl -X DELETE http://localhost:3000/messages/b067efa7-9508-4805-b66c-6305e61bf52c
 
 
 
 
-Neue Aktivität hinzufügen
-curl -X POST http://localhost:3000/messages -H "Content-Type: application/json" -d '{"title":"Fahrradtour","description":"Gemeinsame Fahrradtour in Mittweida"}'
+| Aktion        | HTTP Methode | Beispiel                                   |
+| ------------- | ------------ | ------------------------------------------ |
+| Erstellen     | POST         | `curl -X POST ... -d '{"title":"..."}'`    |
+| Abrufen       | GET          | `curl http://localhost:3000/messages`      |
+| Aktualisieren | PUT          | `curl -X PUT .../messages/<ID> -d '{...}'` |
+| Löschen       | DELETE       | `curl -X DELETE .../messages/<ID>`         |
 
-Aktivität aktualisieren
-curl -X PUT http://localhost:3000/messages/<id> -H "Content-Type: application/json" -d '{"title":"Lange Fahrradtour","description":"Tour mit Einkehr"}'
 
-Aktivität löschen
-curl -X DELETE http://localhost:3000/messages/<id> 
+
 
 
 

@@ -23,7 +23,6 @@
 //   console.log('🚀 Server läuft auf http://localhost:3000');
 // }
 // bootstrap();
-
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -39,8 +38,8 @@ async function bootstrap() {
   }));
 
   const config = new DocumentBuilder()
-    .setTitle('Mittweida Aktivitäten API')
-    .setDescription('API für Aktivitäten planen und verwalten')
+    .setTitle('Nachrichten API')
+    .setDescription('API für Nachrichtenverwaltung')
     .setVersion('1.0')
     .build();
 

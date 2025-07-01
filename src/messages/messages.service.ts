@@ -77,35 +77,14 @@
 //   }
 // }
 
-
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Message } from './entities/message.entity';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { v4 as uuidv4 } from 'uuid';
-import * as fs from 'fs';
-import * as path from 'path';
 
 @Injectable()
 export class MessagesService {
   private messages: Message[] = [];
-  private readonly filePath = path.join(__dirname, '../../data/messages.json');
-
-  constructor() {
-    this.loadFromFile();
-  }
-
-  private loadFromFile() {
-    if (fs.existsSync(this.filePath)) {
-      const fileData = fs.readFileSync(this.filePath, 'utf8');
-      this.messages = JSON.parse(fileData);
-      // Datum als Date-Objekt parsen
-      this.messages.forEach(msg => (msg.createdAt = new Date(msg.createdAt)));
-    }
-  }
-
-  private saveToFile() {
-    fs.writeFileSync(this.filePath, JSON.stringify(this.messages, null, 2));
-  }
 
   findAll(): Message[] {
     return this.messages;
@@ -122,11 +101,10 @@ export class MessagesService {
       id: uuidv4(),
       title: createMessageDto.title,
       description: createMessageDto.description,
-        author: createMessageDto.author, // ✅
+      author: createMessageDto.author,
       createdAt: new Date(),
     };
     this.messages.push(newMessage);
-    this.saveToFile();
     return newMessage;
   }
 
@@ -134,7 +112,7 @@ export class MessagesService {
     const message = this.findOne(id);
     message.title = updateMessageDto.title;
     message.description = updateMessageDto.description;
-    this.saveToFile();
+    message.author = updateMessageDto.author;
     return message;
   }
 
@@ -142,6 +120,5 @@ export class MessagesService {
     const index = this.messages.findIndex(m => m.id === id);
     if (index === -1) throw new NotFoundException(`Message with id ${id} not found`);
     this.messages.splice(index, 1);
-    this.saveToFile();
   }
 }

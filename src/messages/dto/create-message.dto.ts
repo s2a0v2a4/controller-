@@ -18,17 +18,19 @@
 
 // //     class-validator sorgt dafür, dass text und author Pflichtfelder sind und Strings sein müssen
 
-
-import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
 
 export class CreateMessageDto {
-  @ApiProperty()
+  @ApiProperty({ example: 'Grillabend' })
+  @IsString()
   title: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Am Flussufer' })
+  @IsString()
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Sophie' })
+  @IsString()
   author: string;
 }

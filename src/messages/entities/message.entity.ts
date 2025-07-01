@@ -35,7 +35,6 @@
 //   @ApiProperty({ example: '2025-07-01T18:00:00.000Z', description: 'Erstellungsdatum' })
 //   createdAt: Date;
 // }
-
 import { ApiProperty } from '@nestjs/swagger';
 
 export class Message {
@@ -54,4 +53,3 @@ export class Message {
   @ApiProperty()
   createdAt: Date;
 }
-
