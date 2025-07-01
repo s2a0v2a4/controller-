@@ -16,5 +16,3 @@ async function bootstrap() {
   console.log('🚀 Server läuft auf http://localhost:3001');
 }
 bootstrap();
-
-bootstrap();
