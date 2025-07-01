@@ -1,0 +1,26 @@
+<!-- 
+| Datei                                 | Zweck                                                      |
+| ------------------------------------- | ---------------------------------------------------------- |
+| `main.ts`                             | Einstiegspunkt, startet die App                            |
+| `app.module.ts`                       | Hauptmodul, importiert andere Module                       |
+| `messages/messages.controller.ts`     | Verantwortlich für die HTTP-Routen der Nachrichten         |
+| `messages/messages.service.ts`        | Enthält die Logik, z.B. Nachrichten speichern und abrufen  |
+| `messages/dto/create-message.dto.ts`  | Definiert, wie neue Nachrichten aussehen (für Validierung) |
+| `messages/entities/message.entity.ts` | Modell der Nachricht (z.B. Felder, Typen)                  | 
+-->
+<!-- 
+
+So sieht der Flow aus:
+
+    AppModule lädt das MessagesModule
+
+    MessagesModule stellt Controller & Service bereit
+
+    Controller empfängt HTTP-Requests
+
+    Service verwaltet die Nachrichten-Daten im Speicher
+
+    DTOs definieren, wie Eingaben aussehen sollen
+
+    Entities definieren Daten-Strukturen 
+-->
