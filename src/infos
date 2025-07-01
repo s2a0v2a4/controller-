@@ -72,6 +72,7 @@ curl -X DELETE http://localhost:3000/messages/b067efa7-9508-4805-b66c-6305e61bf5
 
 
 
+
 | Aktion        | HTTP Methode | Beispiel                                   |
 | ------------- | ------------ | ------------------------------------------ |
 | Erstellen     | POST         | `curl -X POST ... -d '{"title":"..."}'`    |
