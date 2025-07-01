@@ -1,13 +1,15 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreateMessageDto {
   @IsString()
   @IsNotEmpty()
-  text: string;
+  @MaxLength(100)
+  title: string;
 
   @IsString()
   @IsNotEmpty()
-  author: string;
+  @MaxLength(500)
+  description: string;
 }
 
 // Erklärung:
